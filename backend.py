@@ -8,6 +8,7 @@ from typing import List
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
+import os
 
 app = FastAPI(title="VoltGuard AI Engine")
 
@@ -19,10 +20,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# رابط البيانات المباشر (Raw) لضمان العمل بدون ملفات محلية
-FILE_PATH = "https://raw.githubusercontent.com/youssef-m-m/Datasets/main/PowerQualityDistribution.csv"
-
-print("🔄 جاري تحميل البيانات وتدريب الذكاء الاصطناعي...")
+# هذا السطر يحصل على مسار المجلد الحالي الذي يعمل فيه الكود
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# ربط مسار المجلد باسم الملف
+FILE_PATH = os.path.join(current_dir, "PowerQualityDistribution.csv")
 
 try:
     data = pd.read_csv(FILE_PATH, sep=';')
@@ -79,4 +80,5 @@ async def generate_test():
 if __name__ == "__main__":
 
     uvicorn.run(app, host="127.0.0.1", port=8000)
+
 
