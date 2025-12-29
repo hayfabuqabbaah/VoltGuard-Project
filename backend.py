@@ -20,7 +20,7 @@ app.add_middleware(
 )
 
 # رابط البيانات المباشر (Raw) لضمان العمل بدون ملفات محلية
-DATA_URL = "https://raw.githubusercontent.com/youssef-m-m/Datasets/main/PowerQualityDistribution.csv"
+FILE_PATH = "https://raw.githubusercontent.com/youssef-m-m/Datasets/main/PowerQualityDistribution.csv"
 
 print("🔄 جاري تحميل البيانات وتدريب الذكاء الاصطناعي...")
 
@@ -79,3 +79,4 @@ async def generate_test():
 if __name__ == "__main__":
 
     uvicorn.run(app, host="127.0.0.1", port=8000)
+
